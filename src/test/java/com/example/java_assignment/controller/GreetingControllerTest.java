@@ -78,7 +78,6 @@ public class GreetingControllerTest {
     @DisplayName("Name starting with a digit should return 400")
     void Test_F_nameStartingWithDigit_returns400() throws Exception {
         Mockito.when(greetingService.getGreeting("1alice")).thenThrow(new IllegalArgumentException(GreetingService.ERROR_MESSAGE_INVALID_INPUT));
-        ;
         mockMvc.perform(get(FINAL_URL).param("name", "1alice"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.error").value(GreetingService.ERROR_MESSAGE_INVALID_INPUT));
